@@ -1,0 +1,7 @@
+#App Registration details
+$TenantID = "TenantID"
+$ClientID = "ClientID"$ClientSecret = "ClientSecret"
+$Body =  @{    Grant_Type    = "client_credentials"    Scope         = "https://graph.microsoft.com/.default"    Client_Id     = $ClientID    Client_Secret = $ClientSecret}
+$Connection = Invoke-RestMethod `    -Uri https://login.microsoftonline.com/$TenantID/oauth2/v2.0/token `    -Method POST `    -Body $body
+#Get the Access Token$Token = $Connection.access_token
+#Connect to Microsoft GraphConnect-MgGraph -AccessToken $Token
